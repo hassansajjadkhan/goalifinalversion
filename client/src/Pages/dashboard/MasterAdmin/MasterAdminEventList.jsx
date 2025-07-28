@@ -30,7 +30,7 @@ const AdminEventList = () => {
       } = await supabase.auth.getUser()
       if (!user) return
 
-      let url = `http://localhost:5000/api/events/all`
+      let url = `${import.meta.env.VITE_API_URL}/api/events/all`
       if (filter !== "all") url += `?status=${filter}`
       console.log("Fetching from URL:", url)
 
@@ -66,7 +66,7 @@ const AdminEventList = () => {
     } = await supabase.auth.getUser()
     if (!user) return
 
-    const res = await fetch(`http://localhost:5000/api/events/${eventId}/status`, {
+    const res = await fetch(`${import.meta.env.VITE_API_URL}/api/events/${eventId}/status`, {
       method: "PATCH",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ status: newStatus, admin_id: user.id }),

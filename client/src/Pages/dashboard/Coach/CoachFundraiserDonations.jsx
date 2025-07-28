@@ -14,7 +14,7 @@ const CoachFundraiserDonations = () => {
       } = await supabase.auth.getUser()
       if (!user) return
 
-      const res = await fetch(`http://localhost:5000/api/coach/fundraiser-donations?user_id=${user.id}`)
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/coach/fundraiser-donations?user_id=${user.id}`)
       const result = await res.json()
       setFundraisers(result.fundraisers || [])
       setLoading(false)

@@ -14,7 +14,7 @@ const MasterAdminFundraiserList = () => {
   useEffect(() => {
     const fetchFundraisers = async () => {
       console.log("Fetching fundraisers with filter:", filter)
-      let url = `http://localhost:5000/api/fundraisers/all`
+      let url = `${import.meta.env.VITE_API_URL}/api/fundraisers/all`
       if (filter !== "all") url += `?status=${filter}`
 
       const res = await fetch(url)
@@ -36,7 +36,7 @@ const MasterAdminFundraiserList = () => {
     } = await supabase.auth.getUser()
     if (!user) return
 
-    const res = await fetch(`http://localhost:5000/api/fundraisers/${id}/status`, {
+    const res = await fetch(`${import.meta.env.VITE_API_URL}/api/fundraisers/${id}/status`, {
       method: "PATCH",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ status: newStatus, admin_id: user.id }),

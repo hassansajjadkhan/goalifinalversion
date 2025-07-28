@@ -21,7 +21,7 @@ const GenerateDuesButton = ({ teamId }) => {
         console.log("Sending payload:", payload)
 
         try {
-            const res = await fetch('http://localhost:5000/api/dues/generate', {
+            const res = await fetch('${import.meta.env.VITE_API_URL}/api/dues/generate', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(payload)

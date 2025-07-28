@@ -46,7 +46,7 @@ const AthleteManager = () => {
 
       setParentUsers(parents || [])
 
-      const res = await fetch(`http://localhost:5000/api/athletes/by-team/${team_id}`)
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/athletes/by-team/${team_id}`)
       const { athletes } = await res.json()
       setAthletes(athletes)
     }
@@ -75,7 +75,7 @@ const AthleteManager = () => {
 
   const handleDelete = async (id) => {
     if (!confirm("Delete this athlete profile?")) return
-    await fetch(`http://localhost:5000/api/athletes/${id}`, { method: "DELETE" })
+    await fetch(`${import.meta.env.VITE_API_URL}/api/athletes/${id}`, { method: "DELETE" })
     setAthletes(athletes.filter((a) => a.id !== id))
   }
 
@@ -95,13 +95,13 @@ const AthleteManager = () => {
       payload.parent_id = form.parent_id
     }
     if (editingId) {
-      await fetch(`http://localhost:5000/api/athletes/${editingId}`, {
+      await fetch(`${import.meta.env.VITE_API_URL}/api/athletes/${editingId}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
       })
     } else {
-      await fetch("http://localhost:5000/api/athletes/create", {
+      await fetch("${import.meta.env.VITE_API_URL}/api/athletes/create", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
@@ -109,7 +109,7 @@ const AthleteManager = () => {
     }
     setForm({ full_name: "", position: "", age: "", jersey_number: "", user_id: null, parent_id: "" })
     setEditingId(null)
-    const res = await fetch(`http://localhost:5000/api/athletes/by-team/${teamId}`)
+    const res = await fetch(`${import.meta.env.VITE_API_URL}/api/athletes/by-team/${teamId}`)
     const { athletes } = await res.json()
     setAthletes(athletes)
   }

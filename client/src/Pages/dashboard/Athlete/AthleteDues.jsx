@@ -5,7 +5,7 @@ const AthleteDues = ({ userId }) => {
 
   useEffect(() => {
     const fetchDues = async () => {
-      const res = await fetch(`http://localhost:5000/api/dues/by-user/${userId}`)
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/dues/by-user/${userId}`)
       const data = await res.json()
       setDues(data.dues || [])
     }
@@ -17,7 +17,7 @@ const AthleteDues = ({ userId }) => {
     const confirm = window.confirm(`Pay $${due.amount} for ${due.due_month}?`)
     if (!confirm) return
 
-    const res = await fetch("http://localhost:5000/api/dues/pay", {
+    const res = await fetch("${import.meta.env.VITE_API_URL}/api/dues/pay", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({

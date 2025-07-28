@@ -9,7 +9,7 @@ const AdminDuesList = ({ teamId }) => {
   useEffect(() => {
     const fetchDues = async () => {
       try {
-        const res = await fetch(`http://localhost:5000/api/dues/team/${teamId}`)
+        const res = await fetch(`${import.meta.env.VITE_API_URL}/api/dues/team/${teamId}`)
         const data = await res.json()
         if (res.ok) setDues(data.dues)
         else console.error(data.error)

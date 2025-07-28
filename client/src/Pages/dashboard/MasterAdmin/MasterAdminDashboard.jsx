@@ -41,11 +41,11 @@ const MasterAdminDashboard = () => {
     const fetchGlobalData = async () => {
       try {
         const [metricsRes, usersRes, invitesRes, paymentsRes, logsRes] = await Promise.all([
-          fetch("http://localhost:5000/api/master/metrics"),
-          fetch("http://localhost:5000/api/master/users"),
-          fetch("http://localhost:5000/api/master/invites"),
-          fetch("http://localhost:5000/api/master/payments"),
-          fetch("http://localhost:5000/api/master/logs"),
+          fetch("${import.meta.env.VITE_API_URL}/api/master/metrics"),
+          fetch("${import.meta.env.VITE_API_URL}/api/master/users"),
+          fetch("${import.meta.env.VITE_API_URL}/api/master/invites"),
+          fetch("${import.meta.env.VITE_API_URL}/api/master/payments"),
+          fetch("${import.meta.env.VITE_API_URL}/api/master/logs"),
         ])
 
         const metricsData = await metricsRes.json()

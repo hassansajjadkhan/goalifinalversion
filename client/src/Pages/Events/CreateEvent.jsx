@@ -89,7 +89,7 @@ const CreateEvent = () => {
         formData.append("image", form.image);
       }
 
-      const res = await fetch("http://localhost:5000/api/events", {
+      const res = await fetch("${import.meta.env.VITE_API_URL}/api/events", {
         method: "POST",
         body: formData,
       });

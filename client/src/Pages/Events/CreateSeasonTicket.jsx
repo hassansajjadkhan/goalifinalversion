@@ -43,7 +43,7 @@ const CreateSeasonTicket = () => {
     e.preventDefault();
     if (!user) return alert("Not logged in");
 
-    const res = await fetch('http://localhost:5000/api/season-tickets', {
+    const res = await fetch('${import.meta.env.VITE_API_URL}/api/season-tickets', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ ...form, created_by: user.id, price: parseFloat(form.price) })

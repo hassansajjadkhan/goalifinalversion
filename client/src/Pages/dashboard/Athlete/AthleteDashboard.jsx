@@ -21,7 +21,7 @@ const AthleteDashboard = () => {
 
       setUser(user)
       // Fetch unpaid dues
-      const duesRes = await fetch(`http://localhost:5000/api/dues/by-user/${user.id}`)
+      const duesRes = await fetch(`${import.meta.env.VITE_API_URL}/api/dues/by-user/${user.id}`)
       const duesData = await duesRes.json()
       setDues((duesData.dues || []).filter(d => !d.paid))
       // ✅ Get team_id for invite
@@ -33,7 +33,7 @@ const AthleteDashboard = () => {
       }
 
       // ✅ Fetch tickets
-      const res = await fetch(`http://localhost:5000/api/tickets/by-user/${user.id}`)
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/tickets/by-user/${user.id}`)
       const data = await res.json()
       setTickets(data.tickets || [])
 
@@ -50,7 +50,7 @@ const AthleteDashboard = () => {
 
   const handlePayDues = async (due) => {
     try {
-      const res = await fetch('http://localhost:5000/api/payments/checkout', {
+      const res = await fetch('${import.meta.env.VITE_API_URL}/api/payments/checkout', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

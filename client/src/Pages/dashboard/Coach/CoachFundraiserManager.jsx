@@ -30,7 +30,7 @@ const CoachFundraiserManager = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    const res = await fetch(`http://localhost:5000/api/fundraisers/${editing.id}`, {
+    const res = await fetch(`${import.meta.env.VITE_API_URL}/api/fundraisers/${editing.id}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(editing),

@@ -32,7 +32,7 @@ const AdminEventList = () => {
 
       const { data: profile } = await supabase.from("users").select("team_id").eq("id", user.id).single()
 
-      let url = `http://localhost:5000/api/events?team_id=${profile.team_id}`
+      let url = `${import.meta.env.VITE_API_URL}/api/events?team_id=${profile.team_id}`
       if (filter !== "all") url += `&status=${filter}`
 
       const res = await fetch(url)
@@ -66,7 +66,7 @@ const AdminEventList = () => {
     } = await supabase.auth.getUser()
     if (!user) return
 
-    const res = await fetch(`http://localhost:5000/api/events/${eventId}/status`, {
+    const res = await fetch(`${import.meta.env.VITE_API_URL}/api/events/${eventId}/status`, {
       method: "PATCH",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ status: newStatus, admin_id: user.id }),

@@ -59,10 +59,10 @@ const AdminDashboard = () => {
         if (!user || userError) return
 
         const [metricsRes, usersRes, invitesRes, paymentsRes] = await Promise.all([
-          fetch(`http://localhost:5000/api/admin/metrics?user_id=${user.id}`),
-          fetch(`http://localhost:5000/api/admin/users?user_id=${user.id}`),
-          fetch(`http://localhost:5000/api/admin/invites?user_id=${user.id}`),
-          fetch(`http://localhost:5000/api/admin/payments?user_id=${user.id}`),
+          fetch(`${import.meta.env.VITE_API_URL}/api/admin/metrics?user_id=${user.id}`),
+          fetch(`${import.meta.env.VITE_API_URL}/api/admin/users?user_id=${user.id}`),
+          fetch(`${import.meta.env.VITE_API_URL}/api/admin/invites?user_id=${user.id}`),
+          fetch(`${import.meta.env.VITE_API_URL}/api/admin/payments?user_id=${user.id}`),
         ])
 
         const metricsData = await metricsRes.json()
@@ -104,7 +104,7 @@ const AdminDashboard = () => {
     const {
       data: { user },
     } = await supabase.auth.getUser()
-    const res = await fetch(`http://localhost:5000/api/stripe/connect?user_id=${user.id}`)
+    const res = await fetch(`${import.meta.env.VITE_API_URL}/api/stripe/connect?user_id=${user.id}`)
     const { url } = await res.json()
     if (url) window.location.href = url
   }
@@ -122,7 +122,7 @@ const AdminDashboard = () => {
       formData.append("cover", file);
       formData.append("user_id", user.id);
 
-      const res = await fetch("http://localhost:5000/api/admin/cover-image", {
+      const res = await fetch("${import.meta.env.VITE_API_URL}/api/admin/cover-image", {
         method: "POST",
         body: formData,
       });

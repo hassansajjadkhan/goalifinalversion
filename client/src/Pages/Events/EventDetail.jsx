@@ -38,7 +38,7 @@ const EventDetail = () => {
   const handleBuyTicket = async () => {
     if (!event) return
 
-    const res = await fetch("http://localhost:5000/api/checkout/event", {
+    const res = await fetch("${import.meta.env.VITE_API_URL}/api/checkout/event", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({

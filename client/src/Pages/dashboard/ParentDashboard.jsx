@@ -38,7 +38,7 @@ const ParentDashboard = () => {
           setAthleteChild(athletes[0])
         }
         // ✅ Fetch unpaid dues for that athlete
-        const duesRes = await fetch(`http://localhost:5000/api/dues/by-user/${athletes[0].id}`)
+        const duesRes = await fetch(`${import.meta.env.VITE_API_URL}/api/dues/by-user/${athletes[0].id}`)
         const duesData = await duesRes.json()
         setUnpaidDues(duesData.dues || [])
       }
@@ -64,7 +64,7 @@ const ParentDashboard = () => {
 
   const handlePayDues = async (due) => {
     try {
-      const res = await fetch('http://localhost:5000/api/payments/checkout', {
+      const res = await fetch('${import.meta.env.VITE_API_URL}/api/payments/checkout', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

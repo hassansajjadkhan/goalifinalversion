@@ -81,7 +81,7 @@ const CreateFundraiser = () => {
         formData.append("image", form.image);
       }
 
-      const res = await fetch("http://localhost:5000/api/fundraisers", {
+      const res = await fetch("${import.meta.env.VITE_API_URL}/api/fundraisers", {
         method: "POST",
         body: formData,
       });
