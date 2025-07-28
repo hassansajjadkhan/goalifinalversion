@@ -40,4 +40,11 @@ app.use('/api/master', masterAdminRoutes);
 app.use('/api/dues', duesRoutes)
 app.use('/api/season-tickets', require('./routes/seasonRoutes'));
 
-module.exports = app
+const path = require('path');
+app.use(express.static(path.join(__dirname, '../client/build')));
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../client/build/index.html'));
+});
+
+module.exports = app;
