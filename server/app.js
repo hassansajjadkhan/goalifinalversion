@@ -35,7 +35,7 @@ app.use('/api/checkout', checkoutRoutes);
 app.use('/api/athletes', athleteRoutes);
 app.use('/api/stripe', stripeRoutes);
 app.use('/api/coach', coachRoutes);
-app.use('/api/tickets', ticketRoutes);
+app.use('/api/ticket', ticketRoutes);
 app.use('/api/master', masterAdminRoutes);
 app.use('/api/dues', duesRoutes)
 app.use('/api/season-tickets', require('./routes/seasonRoutes'));
