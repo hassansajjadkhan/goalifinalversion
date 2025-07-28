@@ -162,14 +162,13 @@ if (duesRoutes) app.use('/api/dues', duesRoutes);
 if (seasonRoutes) app.use('/api/season-tickets', seasonRoutes);
 
 // Serve frontend build
-
-
 console.log("✅ Mounting static frontend");
 
-const clientBuildPath = path.join(__dirname, '../client/build');
+const clientBuildPath = path.join(__dirname, '../client/dist');
+
 app.use(express.static(clientBuildPath));
 
-// Handle all unmatched routes *except* for ones starting with /api/
+// Handle all unmatched routes except those starting with /api/
 app.get(/^\/(?!api).*/, (req, res) => {
   res.sendFile(path.join(clientBuildPath, 'index.html'));
 });
